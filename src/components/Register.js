@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './Register.css'; // Make sure to create this CSS file
 
 const Register = () => {
@@ -19,7 +21,7 @@ const Register = () => {
   const onSubmit = async e => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      console.error('Passwords do not match');
+      toast.error('Passwords do not match');
       return;
     }
     try {
@@ -29,14 +31,17 @@ const Register = () => {
         email,
         password
       });
+      toast.success('User registered successfully');
       console.log(res.data);
     } catch (err) {
+      toast.error(err.response.data.msg || 'Registration failed');
       console.error(err.response.data);
     }
   };
 
   return (
     <div className="register-container">
+      <ToastContainer />
       <h1>Welcome To Course Vita</h1>
       <p>Structure Your Future</p>
       <div className="register-box">
