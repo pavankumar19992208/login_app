@@ -34,7 +34,7 @@ const Login = () => {
           <input type="password" name="password" placeholder="Password" value={password} onChange={onChange} required />
           <button type="submit">Login</button>
           <p>
-            New user? <Link to="/register">Register here</Link>
+            New user? <Link to="/">Register here</Link>
           </p>
         </form>
       </div>
